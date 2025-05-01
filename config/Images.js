@@ -1,0 +1,17 @@
+export default {
+  BlueTick: require('../assets/images/BlueTick.jpeg'),
+  User: require('../assets/images/User.jpeg'),
+  Location: require('../assets/images/Location.png'),
+  Payoneer: require('../assets/images/Payoneer.png'),
+  TransferWise: require('../assets/images/TransferWise.png'),
+  Cash: require('../assets/images/Cash.png'),
+  Gps: require('../assets/images/Gps.png'),
+  BigLogo: require('../assets/images/BigLogo.png'),
+  ObFB: require('../assets/images/ObFB.png'),
+  ObGoogle: require('../assets/images/ObGoogle.png'),
+  ObApple: require('../assets/images/ObApple.png'),
+  PexelsAndreaPiacquadio37560421: require('../assets/images/PexelsAndreaPiacquadio37560421.png'),
+  ProductCardDetailRemovebgPreview: require('../assets/images/ProductCardDetailRemovebgPreview.png'),
+  ProductCardDetailSuggestedImages: require('../assets/images/ProductCardDetailSuggestedImages.png'),
+  coffee: require('../assets/images/Coffee.png'),
+};
