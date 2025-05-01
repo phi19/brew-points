@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  DeckSwiper,
-  DeckSwiperCard,
-  ScreenContainer,
-  withTheme,
-} from '@draftbit/ui';
+import { ScreenContainer, withTheme } from '@draftbit/ui';
 import { ImageBackground, View } from 'react-native';
-import * as GlobalStyles from '../GlobalStyles.js';
 import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
@@ -29,30 +23,7 @@ const WelcomePageScreen = props => {
         )}
       >
         {/* Top */}
-        <View>
-          <DeckSwiper
-            horizontalEnabled={true}
-            infiniteSwiping={false}
-            startCardIndex={0}
-            verticalEnabled={true}
-            visibleCardCount={1}
-            {...GlobalStyles.DeckSwiperStyles(theme)['Deck Swiper'].props}
-            style={StyleSheet.applyWidth(
-              GlobalStyles.DeckSwiperStyles(theme)['Deck Swiper'].style,
-              dimensions.width
-            )}
-          >
-            <DeckSwiperCard
-              {...GlobalStyles.DeckSwiperCardStyles(theme)['Deck Swiper Card']
-                .props}
-              style={StyleSheet.applyWidth(
-                GlobalStyles.DeckSwiperCardStyles(theme)['Deck Swiper Card']
-                  .style,
-                dimensions.width
-              )}
-            />
-          </DeckSwiper>
-        </View>
+        <View />
         {/* Bot */}
         <View
           style={StyleSheet.applyWidth(
