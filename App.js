@@ -32,7 +32,7 @@ SplashScreen.preventAutoHideAsync();
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });
@@ -96,10 +96,10 @@ const App = () => {
   const [fontsLoaded] = useFonts({
     Cantarell_400Regular: Fonts.Cantarell_400Regular,
     Cantarell_700Bold: Fonts.Cantarell_700Bold,
-    Inter_300Light: Fonts.Inter_300Light,
-    Inter_400Regular: Fonts.Inter_400Regular,
     Inter_500Medium: Fonts.Inter_500Medium,
     Inter_600SemiBold: Fonts.Inter_600SemiBold,
+    Inter_300Light: Fonts.Inter_300Light,
+    Inter_400Regular: Fonts.Inter_400Regular,
     Inter_700Bold: Fonts.Inter_700Bold,
     Montserrat_600SemiBold: Fonts.Montserrat_600SemiBold,
     Nunito_500Medium: Fonts.Nunito_500Medium,

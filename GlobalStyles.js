@@ -175,3 +175,6 @@ export const DeckSwiperCardStyles = theme =>
       props: {},
     },
   });
+
+export const WebViewStyles = theme =>
+  StyleSheet.create({ 'HTML View': { style: { flex: 1 }, props: {} } });

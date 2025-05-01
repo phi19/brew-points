@@ -72,7 +72,9 @@
     "orientation": "default",
     "iosStatusBar": {},
     "notification": {
-      "androidMode": "default"
+      "color": "#3E3232",
+      "androidMode": "default",
+      "iosDisplayInForeground": true
     },
     "backgroundColor": "#FFFFFF",
     "allowFontScaling": true,

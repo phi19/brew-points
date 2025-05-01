@@ -17,6 +17,7 @@ import CustomerListScreen from './screens/CustomerListScreen';
 import InvoiceScreen from './screens/InvoiceScreen';
 import LoginScreen from './screens/LoginScreen';
 import LossProfitReportScreen from './screens/LossProfitReportScreen';
+import OnboardingEnterAppScreen from './screens/OnboardingEnterAppScreen';
 import PaymentCompletedScreen from './screens/PaymentCompletedScreen';
 import PreviewProductScreen from './screens/PreviewProductScreen';
 import ProductDetailsScreen from './screens/ProductDetailsScreen';
@@ -149,6 +150,13 @@ export default function RootAppNavigator() {
           component={LossProfitReportScreen}
           options={({ navigation }) => ({
             title: 'Loss Profit Report',
+          })}
+        />
+        <Stack.Screen
+          name="OnboardingEnterAppScreen"
+          component={OnboardingEnterAppScreen}
+          options={({ navigation }) => ({
+            title: 'Onboarding Enter App',
           })}
         />
         <Stack.Screen

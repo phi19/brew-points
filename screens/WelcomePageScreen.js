@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScreenContainer, withTheme } from '@draftbit/ui';
-import { ImageBackground, View } from 'react-native';
+import { ImageBackground, Text, View } from 'react-native';
 import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
@@ -36,7 +36,18 @@ const WelcomePageScreen = props => {
             },
             dimensions.width
           )}
-        />
+        >
+          <Text
+            accessible={true}
+            selectable={false}
+            style={StyleSheet.applyWidth(
+              StyleSheet.compose(theme.typography.body1, {}),
+              dimensions.width
+            )}
+          >
+            {'Lorem ipsum dolor sit amet'}
+          </Text>
+        </View>
       </ImageBackground>
     </ScreenContainer>
   );
