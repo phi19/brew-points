@@ -15,13 +15,10 @@ import CategoryScreen from './screens/CategoryScreen';
 import ContactDetailsScreen from './screens/ContactDetailsScreen';
 import CustomerListScreen from './screens/CustomerListScreen';
 import InvoiceScreen from './screens/InvoiceScreen';
-import LoginScreen from './screens/LoginScreen';
+import LoginRegisterScreen from './screens/LoginRegisterScreen';
 import LossProfitReportScreen from './screens/LossProfitReportScreen';
-import OnboardingEnterAppScreen from './screens/OnboardingEnterAppScreen';
 import PaymentCompletedScreen from './screens/PaymentCompletedScreen';
 import PreviewProductScreen from './screens/PreviewProductScreen';
-import ProductDetailsScreen from './screens/ProductDetailsScreen';
-import PurchaseScreen from './screens/PurchaseScreen';
 import PurchaselistScreen from './screens/PurchaselistScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import SalesDetailsScreen from './screens/SalesDetailsScreen';
@@ -29,7 +26,7 @@ import SalesListScreen from './screens/SalesListScreen';
 import StockListScreen from './screens/StockListScreen';
 import SupplierListScreen from './screens/SupplierListScreen';
 import VerificationCodeScreen from './screens/VerificationCodeScreen';
-import WelcomePageScreen from './screens/WelcomePageScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
 import palettes from './themes/palettes';
 import Breakpoints from './utils/Breakpoints';
 import useWindowDimensions from './utils/useWindowDimensions';
@@ -139,10 +136,11 @@ export default function RootAppNavigator() {
           })}
         />
         <Stack.Screen
-          name="LoginScreen"
-          component={LoginScreen}
+          name="LoginRegisterScreen"
+          component={LoginRegisterScreen}
           options={({ navigation }) => ({
-            title: 'Login',
+            headerShown: false,
+            title: 'Login/Register',
           })}
         />
         <Stack.Screen
@@ -150,13 +148,6 @@ export default function RootAppNavigator() {
           component={LossProfitReportScreen}
           options={({ navigation }) => ({
             title: 'Loss Profit Report',
-          })}
-        />
-        <Stack.Screen
-          name="OnboardingEnterAppScreen"
-          component={OnboardingEnterAppScreen}
-          options={({ navigation }) => ({
-            title: 'Onboarding Enter App',
           })}
         />
         <Stack.Screen
@@ -171,20 +162,6 @@ export default function RootAppNavigator() {
           component={PreviewProductScreen}
           options={({ navigation }) => ({
             title: 'Preview - Product',
-          })}
-        />
-        <Stack.Screen
-          name="ProductDetailsScreen"
-          component={ProductDetailsScreen}
-          options={({ navigation }) => ({
-            title: 'Product Details',
-          })}
-        />
-        <Stack.Screen
-          name="PurchaseScreen"
-          component={PurchaseScreen}
-          options={({ navigation }) => ({
-            title: 'Purchase',
           })}
         />
         <Stack.Screen
@@ -238,11 +215,11 @@ export default function RootAppNavigator() {
           })}
         />
         <Stack.Screen
-          name="WelcomePageScreen"
-          component={WelcomePageScreen}
+          name="WelcomeScreen"
+          component={WelcomeScreen}
           options={({ navigation }) => ({
             headerShown: false,
-            title: 'Welcome Page',
+            title: 'Welcome',
           })}
         />
       </Stack.Navigator>

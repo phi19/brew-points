@@ -1,4 +1,5 @@
 export default {
+  flag: require('../assets/images/Flag.png'),
   BlueTick: require('../assets/images/BlueTick.jpeg'),
   User: require('../assets/images/User.jpeg'),
   Location: require('../assets/images/Location.png'),

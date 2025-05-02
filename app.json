@@ -46,6 +46,7 @@
     "extra": {
       "eas": {}
     },
+    "owner": "Henrique_Santos_02",
     "scheme": "untitled-app",
     "splash": {
       "image": "./assets/app/splash.png",
@@ -53,7 +54,7 @@
       "backgroundColor": "#FFF1DA"
     },
     "android": {
-      "package": "com.draftbit.untitledapp",
+      "package": "com.shiftappens.trotinetesmobile",
       "permissions": [],
       "adaptiveIcon": {},
       "versionCode": 1,

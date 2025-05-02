@@ -64,7 +64,7 @@ export const TabViewItemStyles = theme =>
 export const TextStyles = theme =>
   StyleSheet.create({
     Text: { style: { color: theme.colors.text.strong }, props: {} },
-    'Text 2': { style: { color: theme.colors.text.strong }, props: {} },
+    'Text 2': { style: {}, props: {} },
   });
 
 export const TableStyles = theme =>
@@ -132,6 +132,16 @@ export const ButtonStyles = theme =>
       },
       props: {},
     },
+    Button: {
+      style: {
+        backgroundColor: theme.colors.branding.primary,
+        borderRadius: 8,
+        fontFamily: 'System',
+        fontWeight: '700',
+        textAlign: 'center',
+      },
+      props: {},
+    },
     'action btn tablet': {
       style: {
         backgroundColor: theme.colors.branding.primary,
@@ -178,3 +188,25 @@ export const DeckSwiperCardStyles = theme =>
 
 export const WebViewStyles = theme =>
   StyleSheet.create({ 'HTML View': { style: { flex: 1 }, props: {} } });
+
+export const LinearGradientStyles = theme =>
+  StyleSheet.create({ 'Linear Gradient': { style: { flex: 1 }, props: {} } });
+
+export const NumberInputStyles = theme =>
+  StyleSheet.create({
+    'Number Input': {
+      style: {
+        borderBottomWidth: 1,
+        borderColor: theme.colors.border.base,
+        borderLeftWidth: 1,
+        borderRadius: 8,
+        borderRightWidth: 1,
+        borderTopWidth: 1,
+        paddingBottom: 8,
+        paddingLeft: 8,
+        paddingRight: 8,
+        paddingTop: 8,
+      },
+      props: {},
+    },
+  });

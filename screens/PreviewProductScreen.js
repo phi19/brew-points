@@ -3,8 +3,10 @@ import {
   Button,
   Checkbox,
   Circle,
+  ExpoImage,
   Icon,
   ScreenContainer,
+  SimpleStyleScrollView,
   Touchable,
   withTheme,
 } from '@draftbit/ui';
@@ -18,6 +20,8 @@ import {
   View,
 } from 'react-native';
 import { Fetch } from 'react-request';
+import * as GlobalStyles from '../GlobalStyles.js';
+import * as DummyApi from '../apis/DummyApi.js';
 import * as TestServiceDraftbitApi from '../apis/TestServiceDraftbitApi.js';
 import Images from '../config/Images';
 import palettes from '../themes/palettes';
@@ -39,8 +43,8 @@ const PreviewProductScreen = props => {
       hasTopSafeArea={true}
     >
       {/* Fetch Screen (Baggage - Product) */}
-      <TestServiceDraftbitApi.FetchGetProductsGET>
-        {({ loading, error, data, refetchGetProducts }) => {
+      <DummyApi.FetchGetTodosGET>
+        {({ loading, error, data, refetchGetTodos }) => {
           const fetchScreenBaggageProductData = data?.json;
           if (loading) {
             return <ActivityIndicator />;
@@ -129,7 +133,7 @@ const PreviewProductScreen = props => {
                         dimensions.width
                       )}
                     >
-                      {'Travel Bag'}
+                      {'pastries'}
                     </Text>
                   </View>
                   {/* Right Side Frame */}
@@ -187,16 +191,15 @@ const PreviewProductScreen = props => {
                 </View>
               </View>
               {/* Content Scroll View Frame */}
-              <ScrollView
+              <SimpleStyleScrollView
                 bounces={true}
                 horizontal={false}
                 keyboardShouldPersistTaps={'never'}
                 nestedScrollEnabled={false}
                 showsHorizontalScrollIndicator={true}
                 showsVerticalScrollIndicator={true}
-                style={StyleSheet.applyWidth({ flexGrow: 1 }, dimensions.width)}
-                contentContainerStyle={StyleSheet.applyWidth(
-                  { flexShrink: 0, paddingBottom: 100 },
+                style={StyleSheet.applyWidth(
+                  { flexGrow: 1, flexShrink: 0, paddingBottom: 100 },
                   dimensions.width
                 )}
               >
@@ -216,8 +219,14 @@ const PreviewProductScreen = props => {
                   )}
                 >
                   {/* Product Card Featured Image */}
-                  <Image
+                  <ExpoImage
+                    allowDownscaling={true}
+                    cachePolicy={'disk'}
+                    contentPosition={'center'}
                     resizeMode={'cover'}
+                    transitionDuration={300}
+                    transitionEffect={'cross-dissolve'}
+                    transitionTiming={'ease-in-out'}
                     source={imageSource(
                       Images['ProductCardDetailRemovebgPreview']
                     )}
@@ -245,21 +254,28 @@ const PreviewProductScreen = props => {
                     <Text
                       accessible={true}
                       selectable={false}
+                      {...GlobalStyles.TextStyles(theme)['Text'].props}
                       numberOfLines={2}
+                      selectionColor={theme.colors.branding.primary}
                       style={StyleSheet.applyWidth(
-                        {
-                          color: 'theme.colors.primaryTitleUiBaeg',
-                          fontFamily: 'Cantarell_700Bold',
-                          fontSize: 13,
-                          letterSpacing: 2,
-                          lineHeight: 17,
-                          marginTop: 12,
-                          textTransform: 'uppercase',
-                        },
+                        StyleSheet.compose(
+                          GlobalStyles.TextStyles(theme)['Text'].style,
+                          {
+                            alignSelf: 'auto',
+                            color: 'rgb(0, 0, 0)',
+                            fontFamily: 'Cantarell_700Bold',
+                            fontSize: 13,
+                            letterSpacing: 2,
+                            lineHeight: 17,
+                            marginTop: 12,
+                            opacity: 1,
+                            textTransform: 'uppercase',
+                          }
+                        ),
                         dimensions.width
                       )}
                     >
-                      {'Backpack with Contrast Straps'}
+                      {'Lorem ipsum dolor sit amet'}
                     </Text>
                   </View>
                   {/* OverFlow Text Hide */}
@@ -284,7 +300,7 @@ const PreviewProductScreen = props => {
                         dimensions.width
                       )}
                     >
-                      {'$15.00'}
+                      {'$1'}
                     </Text>
                   </View>
                 </View>
@@ -336,155 +352,7 @@ const PreviewProductScreen = props => {
                     { marginBottom: 24, marginLeft: 12, marginRight: 12 },
                     dimensions.width
                   )}
-                >
-                  {/* Component Title Small */}
-                  <Text
-                    accessible={true}
-                    selectable={false}
-                    style={StyleSheet.applyWidth(
-                      {
-                        color: 'theme.colors.custom_rgb149_158_172',
-                        fontFamily: 'Cantarell_700Bold',
-                        fontSize: 10,
-                        marginBottom: 9,
-                        textTransform: 'uppercase',
-                      },
-                      dimensions.width
-                    )}
-                  >
-                    {'Colour'}
-                  </Text>
-                  {/* Option Toggles Frame */}
-                  <View
-                    style={StyleSheet.applyWidth(
-                      {
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        marginTop: 12,
-                        maxWidth: '45%',
-                      },
-                      dimensions.width
-                    )}
-                  >
-                    <Circle
-                      bgColor={'theme.colors.custom_rgb247_127_51'}
-                      size={18}
-                    />
-                    {/* Circle 2 */}
-                    <Circle
-                      bgColor={'theme.colors.custom_rgb26_146_207'}
-                      size={18}
-                    />
-                    {/* Circle 3 */}
-                    <Circle
-                      bgColor={'theme.colors.custom_rgb189_198_212'}
-                      size={18}
-                    />
-                    {/* Circle 4 */}
-                    <Circle
-                      bgColor={'theme.colors.primary_title_ui_baeg'}
-                      size={18}
-                    />
-                  </View>
-                </View>
-                {/* Details Frame 3 */}
-                <View
-                  style={StyleSheet.applyWidth(
-                    { marginBottom: 24, marginLeft: 12, marginRight: 12 },
-                    dimensions.width
-                  )}
-                >
-                  {/* Component Title Small */}
-                  <Text
-                    accessible={true}
-                    selectable={false}
-                    style={StyleSheet.applyWidth(
-                      {
-                        color: 'theme.colors.custom_rgb149_158_172',
-                        fontFamily: 'Cantarell_700Bold',
-                        fontSize: 10,
-                        marginBottom: 9,
-                        textTransform: 'uppercase',
-                      },
-                      dimensions.width
-                    )}
-                  >
-                    {'Size'}
-                  </Text>
-                  {/* Option Toggles Frame */}
-                  <View
-                    style={StyleSheet.applyWidth(
-                      {
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        marginTop: 12,
-                        maxWidth: '61%',
-                      },
-                      dimensions.width
-                    )}
-                  >
-                    {/* Option 1 */}
-                    <Text
-                      accessible={true}
-                      selectable={false}
-                      style={StyleSheet.applyWidth(
-                        {
-                          color: 'theme.colors.primaryTitleUiBaeg',
-                          fontFamily: 'Cantarell_700Bold',
-                          fontSize: 11,
-                        },
-                        dimensions.width
-                      )}
-                    >
-                      {'29'}
-                    </Text>
-                    {/* Option 2 */}
-                    <Text
-                      accessible={true}
-                      selectable={false}
-                      style={StyleSheet.applyWidth(
-                        {
-                          color: 'theme.colors.primaryTitleUiBaeg',
-                          fontFamily: 'Cantarell_700Bold',
-                          fontSize: 11,
-                        },
-                        dimensions.width
-                      )}
-                    >
-                      {'30'}
-                    </Text>
-                    {/* Option 3 */}
-                    <Text
-                      accessible={true}
-                      selectable={false}
-                      style={StyleSheet.applyWidth(
-                        {
-                          color: 'theme.colors.primaryTitleUiBaeg',
-                          fontFamily: 'Cantarell_700Bold',
-                          fontSize: 11,
-                        },
-                        dimensions.width
-                      )}
-                    >
-                      {'31'}
-                    </Text>
-                    {/* Option 4 */}
-                    <Text
-                      accessible={true}
-                      selectable={false}
-                      style={StyleSheet.applyWidth(
-                        {
-                          color: 'theme.colors.primaryTitleUiBaeg',
-                          fontFamily: 'Cantarell_700Bold',
-                          fontSize: 11,
-                        },
-                        dimensions.width
-                      )}
-                    >
-                      {'32'}
-                    </Text>
-                  </View>
-                </View>
+                />
                 {/* Component Title Small */}
                 <Text
                   accessible={true}
@@ -656,7 +524,7 @@ const PreviewProductScreen = props => {
                     }}
                   </TestServiceDraftbitApi.FetchGetProductsGET>
                 </ScrollView>
-              </ScrollView>
+              </SimpleStyleScrollView>
               {/* Footer Frame */}
               <View
                 style={StyleSheet.applyWidth(
@@ -753,7 +621,7 @@ const PreviewProductScreen = props => {
             </>
           );
         }}
-      </TestServiceDraftbitApi.FetchGetProductsGET>
+      </DummyApi.FetchGetTodosGET>
     </ScreenContainer>
   );
 };

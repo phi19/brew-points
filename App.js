@@ -97,14 +97,15 @@ const App = () => {
     Cantarell_400Regular: Fonts.Cantarell_400Regular,
     Cantarell_700Bold: Fonts.Cantarell_700Bold,
     Inter_500Medium: Fonts.Inter_500Medium,
-    Inter_600SemiBold: Fonts.Inter_600SemiBold,
     Inter_300Light: Fonts.Inter_300Light,
     Inter_400Regular: Fonts.Inter_400Regular,
-    Inter_700Bold: Fonts.Inter_700Bold,
+    Inter_600SemiBold: Fonts.Inter_600SemiBold,
     Montserrat_600SemiBold: Fonts.Montserrat_600SemiBold,
     Nunito_500Medium: Fonts.Nunito_500Medium,
     Nunito_600SemiBold: Fonts.Nunito_600SemiBold,
     Nunito_700Bold: Fonts.Nunito_700Bold,
+    Sora_500Medium: Fonts.Sora_500Medium,
+    Sora_400Regular: Fonts.Sora_400Regular,
   });
 
   React.useEffect(() => {
