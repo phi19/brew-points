@@ -65,6 +65,8 @@ export const TextStyles = theme =>
   StyleSheet.create({
     Text: { style: { color: theme.colors.text.strong }, props: {} },
     'Text 2': { style: {}, props: {} },
+    'Text 3': { style: { color: theme.colors.text.strong }, props: {} },
+    'Text 4': { style: { color: theme.colors.text.strong }, props: {} },
   });
 
 export const TableStyles = theme =>
@@ -87,6 +89,8 @@ export const ImageStyles = theme =>
   StyleSheet.create({
     Image: { style: { height: 100, width: 100 }, props: {} },
     'Image 3': { style: { height: 100, width: 100 }, props: {} },
+    'Image 4': { style: { height: 100, width: 100 }, props: {} },
+    'Image 5': { style: { height: 100, width: 100 }, props: {} },
   });
 
 export const ExpoImageStyles = theme =>
@@ -209,4 +213,21 @@ export const NumberInputStyles = theme =>
       },
       props: {},
     },
+  });
+
+export const SwiperStyles = theme =>
+  StyleSheet.create({
+    Swiper: { style: { height: 300, width: '100%' }, props: {} },
+    'Swiper 2': { style: { height: 300, width: '100%' }, props: {} },
+  });
+
+export const FetchStyles = theme =>
+  StyleSheet.create({
+    Fetch: { style: { minHeight: 40 }, props: {} },
+    'Fetch 2': { style: { minHeight: 40 }, props: {} },
+  });
+
+export const LinkStyles = theme =>
+  StyleSheet.create({
+    Link: { style: { color: theme.colors.branding.primary }, props: {} },
   });

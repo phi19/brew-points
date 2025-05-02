@@ -115,7 +115,7 @@ const WelcomeScreen = props => {
             iconPosition={'left'}
             onPress={() => {
               try {
-                navigation.navigate('LoginRegisterScreen');
+                navigation.navigate('LoginScreen');
               } catch (err) {
                 console.error(err);
               }

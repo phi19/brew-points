@@ -1,5 +1,6 @@
 export default {
   flag: require('../assets/images/Flag.png'),
+  logo: require('../assets/images/Logo.png'),
   BlueTick: require('../assets/images/BlueTick.jpeg'),
   User: require('../assets/images/User.jpeg'),
   Location: require('../assets/images/Location.png'),
@@ -15,4 +16,8 @@ export default {
   ProductCardDetailRemovebgPreview: require('../assets/images/ProductCardDetailRemovebgPreview.png'),
   ProductCardDetailSuggestedImages: require('../assets/images/ProductCardDetailSuggestedImages.png'),
   coffee: require('../assets/images/Coffee.png'),
+  Map: require('../assets/images/Map.png'),
+  Banner: require('../assets/images/Banner.png'),
+  NewCard: require('../assets/images/NewCard.png'),
+  bannercafe: require('../assets/images/Bannercafe.png'),
 };

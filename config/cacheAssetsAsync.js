@@ -4,6 +4,7 @@ import * as Font from 'expo-font';
 import {
   AntDesign,
   Entypo,
+  EvilIcons,
   Feather,
   FontAwesome,
   Foundation,
@@ -33,6 +34,7 @@ export default function cacheAssetsAsync() {
   const iconAssets = cacheFonts([
     AntDesign.font,
     Entypo.font,
+    EvilIcons.font,
     Feather.font,
     FontAwesome.font,
     Foundation.font,

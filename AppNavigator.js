@@ -9,23 +9,18 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { systemWeights } from 'react-native-typography';
 import LinkingConfiguration from './LinkingConfiguration';
 import AddContactScreen from './screens/AddContactScreen';
-import AddInvoiceScreen from './screens/AddInvoiceScreen';
+import AddNewCardScreen from './screens/AddNewCardScreen';
 import AddProductScreen from './screens/AddProductScreen';
 import CategoryScreen from './screens/CategoryScreen';
 import ContactDetailsScreen from './screens/ContactDetailsScreen';
-import CustomerListScreen from './screens/CustomerListScreen';
-import InvoiceScreen from './screens/InvoiceScreen';
-import LoginRegisterScreen from './screens/LoginRegisterScreen';
-import LossProfitReportScreen from './screens/LossProfitReportScreen';
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
 import PaymentCompletedScreen from './screens/PaymentCompletedScreen';
 import PreviewProductScreen from './screens/PreviewProductScreen';
 import PurchaselistScreen from './screens/PurchaselistScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import SalesDetailsScreen from './screens/SalesDetailsScreen';
 import SalesListScreen from './screens/SalesListScreen';
-import StockListScreen from './screens/StockListScreen';
-import SupplierListScreen from './screens/SupplierListScreen';
-import VerificationCodeScreen from './screens/VerificationCodeScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import palettes from './themes/palettes';
 import Breakpoints from './utils/Breakpoints';
@@ -94,10 +89,10 @@ export default function RootAppNavigator() {
           })}
         />
         <Stack.Screen
-          name="AddInvoiceScreen"
-          component={AddInvoiceScreen}
+          name="AddNewCardScreen"
+          component={AddNewCardScreen}
           options={({ navigation }) => ({
-            title: 'Add Invoice',
+            title: 'Add New Card',
           })}
         />
         <Stack.Screen
@@ -122,32 +117,18 @@ export default function RootAppNavigator() {
           })}
         />
         <Stack.Screen
-          name="CustomerListScreen"
-          component={CustomerListScreen}
+          name="HomeScreen"
+          component={HomeScreen}
           options={({ navigation }) => ({
-            title: 'Customer List',
+            title: 'Home',
           })}
         />
         <Stack.Screen
-          name="InvoiceScreen"
-          component={InvoiceScreen}
-          options={({ navigation }) => ({
-            title: 'Invoice',
-          })}
-        />
-        <Stack.Screen
-          name="LoginRegisterScreen"
-          component={LoginRegisterScreen}
+          name="LoginScreen"
+          component={LoginScreen}
           options={({ navigation }) => ({
             headerShown: false,
-            title: 'Login/Register',
-          })}
-        />
-        <Stack.Screen
-          name="LossProfitReportScreen"
-          component={LossProfitReportScreen}
-          options={({ navigation }) => ({
-            title: 'Loss Profit Report',
+            title: 'Login',
           })}
         />
         <Stack.Screen
@@ -190,28 +171,6 @@ export default function RootAppNavigator() {
           component={SalesListScreen}
           options={({ navigation }) => ({
             title: 'Sales List',
-          })}
-        />
-        <Stack.Screen
-          name="StockListScreen"
-          component={StockListScreen}
-          options={({ navigation }) => ({
-            title: 'Stock List',
-          })}
-        />
-        <Stack.Screen
-          name="SupplierListScreen"
-          component={SupplierListScreen}
-          options={({ navigation }) => ({
-            title: 'Supplier List',
-          })}
-        />
-        <Stack.Screen
-          name="VerificationCodeScreen"
-          component={VerificationCodeScreen}
-          options={({ navigation }) => ({
-            headerShown: false,
-            title: 'Verification Code',
           })}
         />
         <Stack.Screen
