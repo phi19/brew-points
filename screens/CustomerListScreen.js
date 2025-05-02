@@ -10,7 +10,6 @@ import {
 } from '@draftbit/ui';
 import { useIsFocused } from '@react-navigation/native';
 import { ActivityIndicator, Text, View } from 'react-native';
-import { Fetch } from 'react-request';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as DraftbitApi from '../apis/DraftbitApi.js';
 import Images from '../config/Images';

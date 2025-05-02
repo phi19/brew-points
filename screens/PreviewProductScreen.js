@@ -19,7 +19,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import { Fetch } from 'react-request';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as DummyApi from '../apis/DummyApi.js';
 import * as TestServiceDraftbitApi from '../apis/TestServiceDraftbitApi.js';
