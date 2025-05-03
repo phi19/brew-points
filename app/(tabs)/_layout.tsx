@@ -40,7 +40,7 @@ export default function TabLayout() {
     >
       {/* Home Tab */}
       <Tabs.Screen
-        name="index" // Matches app/(tabs)/index.tsx (Your home screen)
+        name="home" // Matches app/(tabs)/home.tsx (Your home screen)
         options={{
           title: "Home",
           tabBarIcon: ({ color, focused }) => (

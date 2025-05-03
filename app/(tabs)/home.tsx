@@ -13,6 +13,7 @@ import {
   ActivityIndicator,
   ImageBackground,
   Platform,
+  Alert,
 } from "react-native";
 import {
   Ionicons,
@@ -43,67 +44,57 @@ interface User {
   // Add other fields as needed
 }
 
-// --- Dummy Data (Replace with API calls later) ---
-const categories = ["All Coffee", "Machiato", "Latte", "Americano", "Espresso"];
-
-const coffeeItems = [
-  {
-    id: "1",
-    name: "Caffe Mocha",
-    type: "Deep Foam",
-    price: "4.53",
-    rating: 4.8,
-    image: require("../../assets/images/coffee_banner.png"),
-  }, // Replace with actual image paths
-  {
-    id: "2",
-    name: "Flat White",
-    type: "Espresso",
-    price: "3.53",
-    rating: 4.8,
-    image: require("../../assets/images/coffee_banner.png"),
-  },
-  {
-    id: "3",
-    name: "Cappuccino",
-    type: "Foamy",
-    price: "4.20",
-    rating: 4.9,
-    image: require("../../assets/images/coffee_banner.png"),
-  },
-  {
-    id: "4",
-    name: "Latte",
-    type: "Milky",
-    price: "4.00",
-    rating: 4.7,
-    image: require("../../assets/images/coffee_banner.png"),
-  },
-  // Add more items
-];
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL; // Ensure this is set in .env
 
 const bannerImage = require("../../assets/images/coffee_banner.png"); // Replace with your banner image
 
 // --- Components ---
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  // Location should now be part of the user object
+  location?: {
+    city: string;
+    country: string;
+  };
+}
+
+// --- Define Shop Type ---
+interface Shop {
+  id: string;
+  name: string;
+  category: string; // Or categories array
+  description: string;
+  rating: number;
+  image: string; // This will be a URL
+}
+
 // Coffee Item Card
-const CoffeeCard = ({ item }: { item: (typeof coffeeItems)[0] }) => (
+const ShopCard = ({ item }: { item: Shop }) => (
   <View style={styles.card}>
     <View style={styles.imageContainer}>
+      {/* Use Image source={{ uri: ... }} for network images */}
       <Image
-        source={item.image}
+        source={{ uri: item.image }}
         style={styles.coffeeImage}
         resizeMode="cover"
       />
-      <View style={styles.ratingBadge}>
-        <FontAwesome name="star" size={10} color="#FBBE21" />
-        <Text style={styles.ratingText}>{item.rating.toFixed(1)}</Text>
-      </View>
+      {item.rating ? ( // Conditionally render rating if available
+        <View style={styles.ratingBadge}>
+          <FontAwesome name="star" size={10} color="#FBBE21" />
+          <Text style={styles.ratingText}>{item.rating.toFixed(1)}</Text>
+        </View>
+      ) : null}
     </View>
     <Text style={styles.coffeeName}>{item.name}</Text>
-    <Text style={styles.coffeeType}>{item.type}</Text>
+    <Text style={styles.coffeeType}>{item.description} </Text>
+    {/* Use description */}
     <View style={styles.priceRow}>
-      <Text style={styles.priceText}>$ {item.price}</Text>
+      {/* Replace price with something else or remove if shops don't have a single price */}
+      <Text style={styles.priceText}>{item.category}</Text>
       <TouchableOpacity style={styles.addButton}>
         <MaterialIcons name="add" size={18} color="#FFFFFF" />
       </TouchableOpacity>
@@ -115,47 +106,93 @@ const ACTIVE_COLOR = "#C67C4E"; // Brownish color from image
 
 export default function HomeScreen() {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [shops, setShops] = useState<Shop[]>([]); // State for shops
+  const [isLoadingUser, setIsLoadingUser] = useState(true); // Loading state for user
+  const [isLoadingShops, setIsLoadingShops] = useState(true); // Loading state for shops
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState(categories[0]); // Default to 'All Coffee'
+  const [activeCategory, setActiveCategory] = useState("All Coffee"); // Keep static categories for now
+
+  const categories = [
+    "All Coffee",
+    "Café",
+    "Coffee Shop",
+    "Roastery & Café",
+    "Bistro",
+  ];
 
   useEffect(() => {
-    const loadUserData = async () => {
+    const loadInitialData = async () => {
+      // Load User Data
+      setIsLoadingUser(true);
       try {
         const userDataString = await SecureStore.getItemAsync(USER_DATA_KEY);
         if (userDataString) {
-          const parsedUser = JSON.parse(userDataString);
-          // --- Set a default location if not present ---
-          if (!parsedUser.location) {
-            parsedUser.location = { city: "Coimbra", country: "Portugal" }; // Default for display
-          }
-          // -------------------------------------------
-          setUser(parsedUser);
+          setUser(JSON.parse(userDataString)); // Location is part of this object now
         } else {
           console.warn("User data not found in secure store.");
-          // Handle case where user data is missing (e.g., navigate back to login?)
+          // Optional: Redirect to login if no user data?
+          // router.replace('/login');
         }
       } catch (error) {
         console.error("Failed to load user data:", error);
       } finally {
-        setIsLoading(false);
+        setIsLoadingUser(false);
+      }
+
+      // Load Shops Data
+      if (!API_BASE_URL) {
+        Alert.alert("Configuration Error", "API URL not configured.");
+        setIsLoadingShops(false);
+        return; // Stop if URL isn't set
+      }
+
+      setIsLoadingShops(true);
+      try {
+        const endpoint = "/api/v1/shop/findAll"; // Ensure this matches backend route
+        const url = `${API_BASE_URL}${endpoint}`;
+
+        console.log(`Sending request to: ${url}`);
+
+        const response = await fetch(url, {
+          method: "POST",
+        }); // Fetch shops
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data: Shop[] = await response.json();
+        setShops(data);
+      } catch (error: any) {
+        console.error("Failed to fetch shops:", error);
+        Alert.alert(
+          "Error Fetching Shops",
+          error.message || "Could not load shop data."
+        );
+        setShops([]); // Set empty array on error
+      } finally {
+        setIsLoadingShops(false);
       }
     };
 
-    loadUserData();
-  }, []);
+    loadInitialData();
+  }, []); // Runs once on mount
 
-  // Filter logic (basic example, refine as needed)
-  const filteredCoffeeItems =
+  // --- Update Filtering Logic ---
+  // Adjust filtering based on shop properties (e.g., category or name)
+  const filteredShops =
     activeCategory === "All Coffee"
-      ? coffeeItems
-      : coffeeItems.filter(
-          (item) =>
-            item.type.toLowerCase().includes(activeCategory.toLowerCase()) ||
-            item.name.toLowerCase().includes(activeCategory.toLowerCase())
+      ? shops
+      : shops.filter(
+          (shop) =>
+            shop.category
+              .toLowerCase()
+              .includes(activeCategory.toLowerCase()) ||
+            shop.name.toLowerCase().includes(activeCategory.toLowerCase())
         );
+  // ----------------------------
 
-  if (isLoading) {
+  // Combined loading state check
+  if (isLoadingUser || isLoadingShops) {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={ACTIVE_COLOR} />
@@ -163,10 +200,11 @@ export default function HomeScreen() {
     );
   }
 
-  // Extract user info safely
-  const userName = user?.name?.split(" ")[0] || "User"; // Get first name or default
-  const locationCity = user?.location?.city || "Unknown";
-  const locationCountry = user?.location?.country || "Location";
+  // --- Location is read directly from the user state ---
+  const userName = user?.name?.split(" ")[0] || "User";
+  const locationCity = user?.location?.city || "Set Location"; // Default if somehow missing
+  const locationCountry = user?.location?.country || "";
+  // ---------------------------------------------------
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -286,8 +324,11 @@ export default function HomeScreen() {
 
           {/* Coffee List */}
           <FlatList
-            data={filteredCoffeeItems}
-            renderItem={({ item }) => <CoffeeCard item={item} />}
+            data={filteredShops} // Use filteredShops state
+            renderItem={({ item }) => {
+              console.log(item, 1491)
+              return <ShopCard item={item} />;
+            }}
             keyExtractor={(item) => item.id}
             numColumns={2}
             scrollEnabled={false} // Disable FlatList scrolling, rely on ScrollView
@@ -295,7 +336,11 @@ export default function HomeScreen() {
             contentContainerStyle={styles.listContentContainer} // Padding at the bottom
             ListEmptyComponent={
               <Text style={styles.emptyListText}>
-                No coffee found for {activeCategory}
+                {shops.length === 0
+                  ? !isLoadingShops
+                    ? "No shops available right now."
+                    : `No results found for "${activeCategory}"`
+                  : null}
               </Text>
             }
           />
@@ -461,11 +506,10 @@ const styles = StyleSheet.create({
     paddingBottom: 100, // Ensure space for tab bar and scrolling past last row
   },
   card: {
-    backgroundColor: "#FFFFFF", // Card background
+    backgroundColor: "#FFFFFF",
     borderRadius: 16,
     marginBottom: 20,
-    width: "48%", // Roughly half width minus gap
-    // Add shadow for elevation (Platform specific)
+    width: "48%",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -477,9 +521,10 @@ const styles = StyleSheet.create({
   },
   coffeeImage: {
     width: "100%",
-    height: 130, // Adjust height as needed
+    height: 130,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
+    backgroundColor: "#eee", // Add a placeholder background
   },
   ratingBadge: {
     position: "absolute",
@@ -487,7 +532,7 @@ const styles = StyleSheet.create({
     left: 8,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
     borderRadius: 8,
     paddingHorizontal: 6,
     paddingVertical: 3,
@@ -499,6 +544,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   coffeeName: {
+    // Keep name or rename to shopName
     fontSize: 16,
     fontWeight: "bold",
     color: "#333",
@@ -506,6 +552,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
   },
   coffeeType: {
+    // Keep name or rename to shopDescription/shopCategory
     fontSize: 12,
     color: "#888",
     marginTop: 2,
@@ -520,12 +567,15 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   priceText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#2F2D2C", // Dark text for price
+    // Used for category display now
+    fontSize: 14, // Adjusted size maybe
+    fontWeight: "500",
+    color: "#555", // Adjusted color maybe
+    flexShrink: 1, // Allow text to shrink if name is long
+    marginRight: 5,
   },
   addButton: {
-    backgroundColor: ACTIVE_COLOR, // Brownish color
+    backgroundColor: ACTIVE_COLOR,
     borderRadius: 8,
     padding: 8,
   },
@@ -533,5 +583,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 30,
     color: "#888",
+    paddingHorizontal: 20, // Add padding so text wraps nicely
   },
 });
