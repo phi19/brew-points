@@ -130,10 +130,8 @@ export default function HomeScreen() {
 
   const categories = [
     "All Coffee",
-    "Café",
     "Coffee Shop",
-    "Roastery & Café",
-    "Bistro",
+    "Bakery & Pastry",
   ];
 
   useEffect(() => {
