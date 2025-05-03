@@ -105,6 +105,14 @@ const ShopCard = ({
       <View style={styles.priceRow}>
         {/* Replace price with something else or remove if shops don't have a single price */}
         <Text style={styles.priceText}>{item.waitTime}</Text>
+
+        <View style={styles.productArrowButton}>
+          <MaterialCommunityIcons
+            name="arrow-right"
+            size={20}
+            color="#FFFFFF"
+          />
+        </View>
       </View>
     </TouchableOpacity>
   </View>
@@ -597,5 +605,10 @@ const styles = StyleSheet.create({
     marginTop: 30,
     color: "#888",
     paddingHorizontal: 20, // Add padding so text wraps nicely
+  },
+  productArrowButton: {
+    backgroundColor: ACTIVE_COLOR,
+    borderRadius: 8,
+    padding: 6,
   },
 });

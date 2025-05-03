@@ -64,7 +64,7 @@ const ProductCard = ({
     <View style={styles.productPriceRow}>
       <Text style={styles.productPrice}>{item.price}</Text>
       <TouchableOpacity style={styles.productArrowButton} onPress={onAddToCart}>
-        <MaterialCommunityIcons name="arrow-right" size={20} color="#FFFFFF" />
+        <MaterialCommunityIcons name="plus" size={20} color="#FFFFFF" />
       </TouchableOpacity>
     </View>
   </View>
