@@ -1,196 +1,113 @@
-# Welcome to your Draftbit app!
-
-## Get started
-
-   ```bash
-   npm install
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-
-This `README` is designed to help you get your Draftbit app running locally. Read
-through the next few sections carefully, and if you encounter any issues please
-do not hesitate to post in [Community](https://community.draftbit.com).
-
-> Note that all of the commands in this document should be run using your
-> computer's **command line**. If you're unsure of what this is, please read
-> [this](https://tutorial.djangogirls.org/en/intro_to_command_line/) guide
-> before moving on.
-
-Remember, at any point you can go back to [build.draftbit.com](https://build.draftbit.com) and continue building your app
-there!
-
-## Requirements
-
-- [Node.js LTS release](https://nodejs.org/en/)
-- [Git](https://git-scm.com/)
-- [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall) for macOS and Linux users
-- [Yarn](https://classic.yarnpkg.com/en/docs/install) use this over `npm install` when installing dependencies
-
-> Only Node.js LTS releases (even-numbered) are recommended. As Node.js [officially states](https://nodejs.org/en/about/releases/), "Production applications should only use Active LTS or Maintenance LTS releases."
-
-## Recommended Tools
-
-- [VSCode Editor](https://code.visualstudio.com/download)
-  - [VSCode Expo Extension](https://marketplace.visualstudio.com/items?itemName=expo.vscode-expo-tools) for `app.json` debugging and autocomplete.
-- Windows users: [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows), Bash via WSL, or the VSCode terminal.
-- Expo Go for iOS and Android
-  - 🤖 [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent) - Android Lollipop (5) and greater.
-  - 🍎 [iOS App Store](https://itunes.com/apps/exponent) - iOS 11 and greater.
-
-## Installing Node.js
-
-You can install Node by going to the [website directly](https://nodejs.org/en/) and clicking the side that says "Recommended For Most Users". This will guide you through the process.
-
-Once Node has been installed, run the following on the command line to make sure
-it's been installed correctly:
-
-```
-$ node -v
-```
-
-If you see the current version of Node in response, you've successfully
-installed Node on your machine.
-
-For example,
-
-```
-$ node -v
-v16.15.1
-```
-
-[Learn more about installing Nodejs](https://nodejs.dev/en/learn/how-to-install-nodejs/)
-
-> 😳 **Need help?** Try searching the [Community](https://community.draftbit.com) &mdash; which are a great resource for troubleshooting.
-
-## Install Project Dependencies
-
-First, navigate to the project directory. The .zip will likely be in your
-downloads folder, so extract the .zip and move it to the desired location
-before proceeding.
-
-Now, run the following commands to install the project dependencies (note that
-you'll need an internet connection to do so).
-
-```
-$ cd Desktop/New-App
-$ yarn
-```
-
-> The `cd` command above takes you into the project directory so you can install
-> the correct dependencies. You should replace `Desktop/New-App` with the actual
-> path to your unzipped project folder.
-
-## Log In to Expo
-
-Verify that the installation was successful by running `npx expo whoami`. You're not logged in yet, so you will see "Not logged in". You can create an account by running `npx expo register` if you like, or if you have one already run `npx expo login`, but you also don't need an account to get started.
-
-[Learn more about Expo CLI here](https://docs.expo.io/get-started/installation/#installing-expo-cli)
-
-## Running
-
-To start your project, simply run: `yarn start` inside of the project directory
-(make sure you've [installed the project dependencies](#install-project-dependencies) first). This should open the Expo
-developer tools in the command line.
-
-### Running in an emulator
-
-You can run your app on your mobile device, on the iOS simulator (if you have
-a Mac), or on the Android emulator. If you'd prefer to run your app on an
-emulator, see the installation instructions below.
-
-- [iOS Simulator](https://docs.expo.io/workflow/ios-simulator/)
-- [Android Studio](https://docs.expo.io/workflow/android-studio-emulator/)
-
-After installing and launching the emulator, and while in the command line, type `a` to launch on the Android emulator or `i` to launch on the IOS simulator. You can also press `w` to launch on web.
-
-### Running on your Android or iOS Device
-
-The fastest way to get up and running is to use the Expo Go app on your iOS or Android device. Expo Go allows you to open up apps that are being served through Expo CLI.
-
-- 🤖 [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent) - Android Lollipop (5) and greater.
-- 🍎 [iOS App Store](https://itunes.com/apps/exponent) - iOS 11 and greater.
-
-After installing, scan the barcode you see in the command line.
-
-> If you are using custom packages, then there is a chance your app will not run on Expo Go. In that case, you need to [create your own build of the app](https://docs.expo.dev/build/setup/)
-
-## File Structure
-
-```
-.
-    ├── assets                 # Static assets like images and fonts.
-    ├── config                 # JS representation of fonts, images, and more
-    ├── screens                # React Native code for the screens you built.
-    │   └── MyFirstScreen.js   # Example file for the screen named "My First Screen"
-    ├── themes                 # JS representation of the theme
-    ├── .gitignore             # List of files to ignore when comitting with Git
-    ├── App.js                 # Entry point for your app
-    ├── app.json               # Configuration file for your app, used by Expo
-    ├── AppNavigator.js        # Code for your app's navigators
-    ├── package.json           # The metadata for your project, including dependencies
-    └── README.md              # This file!
-```
-
-## Publishing your app to the App Store
-
-Expo has really great documentation for how to get started. [Click here](https://docs.expo.dev/build/setup/) to learn more.
-
-## Troubleshooting
-
-Any errors that may occur in the process of developing or testing your app will show up as a "Redbox" error on the testing device. A red box will be show on the device with the error message and stack trace for the error. The Expo documentation has [more information about Redbox errors](https://docs.expo.dev/debugging/errors-and-warnings).
-
-Compilation errors or errors occurring when the expo process tries to execute
-commands will also show up in the command line. If you cannot fix these errors, you
-should refer to Expo's documentation on [debugging
-Javascript](https://docs.expo.dev/debugging/runtime-issues).
-
-## FAQ
-
-- _How can I add my code to GitHub?_
-
-  Pushing your code to GitHub is easy! Follow the information
-  [guide](https://help.github.com/en/github/getting-started-with-github/create-a-repo)
-  to create your repository and commit your project code.
-
-- _How do I build a binary for the App and Play store?_
-
-  Expo published an [excellent
-  guide](https://docs.expo.dev/build/setup/) for
-  deploying to the Apple App Store and the Google Play Store.
-
-- _What/where is the license for this code?_
-
-  There's no license by default, but if you create a GitHub repository for your
-  project code, for example, [adding a license is
-  easy](https://help.github.com/en/github/building-a-strong-community/adding-a-license-to-a-repository).
-
-- _Can I run Expo web with this?_
-
-  Of course! See [this](https://docs.expo.dev/workflow/web/) guide by Expo for running your React Native app in
-  a web browser.
-
-- _What libraries does this code depend on?_
-
-  You can see the full list in your projects `package.json` file (under the
-  `dependencies` section).
-
+# BrewPoints ☕️ Loyalty App
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <!-- Optional: Add relevant badges -->
+
+BrewPoints is a React Native mobile application designed to connect coffee lovers with their favorite local cafés and pastry shops, while rewarding their loyalty. It serves as a marketplace where businesses can showcase their offerings and customers can easily discover, order, and earn rewards.
+
+## Overview
+
+The core idea behind BrewPoints is twofold:
+
+1.  **For Customers:** Provide a seamless way to browse menus, place orders from nearby cafés/pastry shops, and earn "BrewPoints" for every purchase made through the app. These points can then be redeemed for discounts or specific items, encouraging repeat visits.
+2.  **For Businesses (Cafés/Pastries):** Offer a platform to gain visibility, attract new customers, manage online orders, and foster customer loyalty through the integrated points system. Businesses can register their shop within the app (potentially involving a subscription or fee).
+
+## Key Features
+
+*   **Customer Features:**
+    *   Discover local cafés and pastry shops.
+    *   Browse detailed menus with item descriptions and prices.
+    *   Place orders directly through the app for pickup or delivery (if supported).
+    *   User authentication (Mobile number, Google, Apple, Email).
+    *   Earn BrewPoints automatically with each purchase.
+    *   View current BrewPoints balance.
+    *   Redeem BrewPoints for rewards (e.g., free coffee, discounts).
+*   **Business Features (Conceptual - Backend Dependent):**
+    *   Register and manage shop profile.
+    *   Create and update menu items.
+    *   Receive and manage incoming orders.
+    *   Participate in the BrewPoints loyalty program.
+    *   View customer analytics (potentially).
+
+## Use Cases
+
+*   **Customers:**
+    *   Finding a new local coffee spot.
+    *   Quickly re-ordering their usual morning coffee.
+    *   Ordering ahead to skip the line.
+    *   Getting rewarded for being a regular customer at participating shops.
+*   **Businesses:**
+    *   Expanding their customer base beyond walk-ins.
+    *   Providing a convenient online ordering channel.
+    *   Implementing a digital loyalty program without building their own system.
+    *   Increasing customer retention through points and rewards.
+
+<!-- Optional: Add Screenshots Here -->
+<!--
+## Screenshots
+
+<img src="path/to/screenshot1.png" width="200"> <img src="path/to/screenshot2.png" width="200">
+ (Add screenshots of key app screens)
+-->
+
+## Tech Stack
+
+*   **Frontend:** React Native (Expo Managed Workflow)
+*   **Routing:** Expo Router (File-based routing)
+*   **Language:** TypeScript
+*   **UI Components:** Standard React Native components, Expo Modules (LinearGradient, Vector Icons)
+*   **Backend:** Connects to a separate backend API (Assumed: `https://brew-points-backend-production.up.railway.app/`) for data, orders, authentication, and points management.
+
+## Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+*   [Node.js](https://nodejs.org/) (LTS version recommended)
+*   [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+*   [Git](https://git-scm.com/)
+*   A code editor (e.g., [Visual Studio Code](https://code.visualstudio.com/))
+*   [Expo Go](https://expo.dev/go) app installed on your iOS or Android device/simulator.
+
+### Installation & Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/YOUR_GITHUB_USERNAME/brewpoints.git
+    cd brewpoints
+    ```
+    (Replace `YOUR_GITHUB_USERNAME` with the actual username)
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    # yarn install
+    ```
+
+3.  **Configure Environment Variables:**
+    *   This app requires a connection to the backend API to function fully (e.g., for login, fetching data).
+    *   Create a file named `.env` in the root directory of the project (`brewpoints/.env`).
+    *   Add the following line to the `.env` file, replacing the URL if necessary:
+        ```
+        EXPO_PUBLIC_API_URL=https://brew-points-backend-production.up.railway.app
+        ```
+    *   **Important:** The `.env` file is included in `.gitignore` and should *not* be committed to version control as it may contain sensitive information in the future.
+
+4.  **Run the Application:**
+    ```bash
+    npx expo start
+    ```
+    *   This will start the Metro Bundler.
+    *   You can then:
+        *   Scan the QR code shown in the terminal using the Expo Go app on your physical device.
+        *   Press `i` to open in an iOS simulator (requires Xcode).
+        *   Press `a` to open in an Android emulator/device (requires Android Studio setup).
+
+### Editing the Code
+
+*   Open the `brewpoints` folder in your code editor (e.g., VS Code).
+*   Most of the UI code resides within the `app/` directory, following the Expo Router file structure.
+*   Modify components and save your changes. The app should automatically reload in Expo Go (or you can manually reload from the Expo developer menu).
+
+## Project Structure (Simplified)
