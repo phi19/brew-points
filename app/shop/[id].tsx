@@ -13,12 +13,10 @@ import {
   SafeAreaView, // Use SafeAreaView at the top level
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import {
-  Ionicons,
-  FontAwesome,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+
+import { useCart } from "@/contexts/CartContext"; // Import the
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 const ACTIVE_COLOR = "#C67C4E"; // Re-define color or import from constants
@@ -48,7 +46,13 @@ interface ShopDetails {
 // ---------------------------------------------------------
 
 // --- Product Card Component (for the detail screen list) ---
-const ProductCard = ({ item }: { item: Product }) => (
+const ProductCard = ({
+  item,
+  onAddToCart,
+}: {
+  item: Product;
+  onAddToCart: () => void;
+}) => (
   <View style={styles.productCard}>
     <Image
       source={{ uri: item.image }}
@@ -59,7 +63,7 @@ const ProductCard = ({ item }: { item: Product }) => (
     <Text style={styles.productDescription}>{item.description}</Text>
     <View style={styles.productPriceRow}>
       <Text style={styles.productPrice}>{item.price}</Text>
-      <TouchableOpacity style={styles.productArrowButton}>
+      <TouchableOpacity style={styles.productArrowButton} onPress={onAddToCart}>
         <MaterialCommunityIcons name="arrow-right" size={20} color="#FFFFFF" />
       </TouchableOpacity>
     </View>
@@ -91,14 +95,15 @@ const OfferIcon = ({ type }: { type: string }) => {
 // ---------------------------------------------------------
 
 export default function ShopDetailScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>(); // Get the 'id' param
+  const { id: shopId } = useLocalSearchParams<{ id: string }>(); // Get the 'id' param
   const [shopDetails, setShopDetails] = useState<ShopDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchShopDetails = async () => {
-      if (!id) {
+      if (!shopId) {
         setError("Shop ID is missing.");
         setIsLoading(false);
         return;
@@ -115,12 +120,12 @@ export default function ShopDetailScreen() {
         const endpoint = "/api/v1/shop/findById";
         const url = `${API_BASE_URL}${endpoint}`;
 
-        console.log(`Fetching details for shop ID: ${id} from ${url}`);
+        console.log(`Fetching details for shop ID: ${shopId} from ${url}`);
 
         const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: id }), // Send ID in the body
+          body: JSON.stringify({ id: shopId }), // Send ID in the body
         });
 
         const responseText = await response.text(); // Get text first for debugging
@@ -149,7 +154,20 @@ export default function ShopDetailScreen() {
     };
 
     fetchShopDetails();
-  }, [id]); // Re-fetch if the id changes
+  }, [shopId]); // Re-fetch if the id changes
+
+  const handleAddToCart = (product: Product) => {
+    if (!shopId) {
+      console.error("Shop ID is missing, cannot add to cart.");
+      return; // Should not happen if shopDetails loaded
+    }
+    addToCart(product, shopId);
+    // Optional: Add feedback like a toast message
+    // Example: Toast.show({ type: 'success', text1: `${product.name} added to cart!` });
+    console.log(
+      `Attempting to add ${product.name} from shop ${shopId} to cart.`
+    );
+  };
 
   // --- Render Logic ---
   if (isLoading) {
@@ -224,7 +242,12 @@ export default function ShopDetailScreen() {
         <View style={styles.productListContainer}>
           <FlatList
             data={shopDetails.products}
-            renderItem={({ item }) => <ProductCard item={item} />}
+            renderItem={({ item }) => (
+              <ProductCard
+                item={item}
+                onAddToCart={() => handleAddToCart(item)}
+              />
+            )}
             keyExtractor={(item) => item.id}
             numColumns={2}
             scrollEnabled={false} // Handled by outer ScrollView

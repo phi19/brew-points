@@ -1,37 +1,46 @@
-import { Tabs } from "expo-router";
+import { Tabs, router } from "expo-router";
 import React from "react";
-import { Platform } from "react-native"; // Import View
+import {
+  Platform,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native"; // Import View
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"; // Import standard icons
+import { useCart } from "@/contexts/CartContext"; // Import useCart (adjust path if needed)
 
 // Define colors based on the target image
 const ACTIVE_COLOR = "#C67C4E"; // Brownish active color
 const INACTIVE_COLOR = "#A9A9A9"; // Gray inactive color
 const TAB_BACKGROUND_COLOR = "#FFFFFF"; // White background for the tab bar
 const BORDER_COLOR = "#E0E0E0"; // Light gray for the top border
+const POPOVER_BG_COLOR = "#313131"; // Dark background for popover
+const POPOVER_TEXT_COLOR = "#FFFFFF";
+
+// --- Define Tab Bar Height (used for positioning popover) ---
+const TAB_BAR_HEIGHT = Platform.OS === "ios" ? 90 : 70;
 
 export default function TabLayout() {
-  // Note: Removed colorScheme usage as we are defining fixed colors based on the image
-
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: ACTIVE_COLOR,
         tabBarInactiveTintColor: INACTIVE_COLOR,
         headerShown: false,
-        tabBarShowLabel: false, // Hide text labels under icons
+        tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: TAB_BACKGROUND_COLOR, // Solid white background
-          borderTopWidth: 1, // Add a subtle top border line
+          backgroundColor: TAB_BACKGROUND_COLOR,
+          borderTopWidth: 1,
           borderTopColor: BORDER_COLOR,
-          height: Platform.OS === "ios" ? 90 : 70, // Standard height adjust
-          paddingBottom: Platform.OS === "ios" ? 30 : 10, // Padding for home indicator area
+          height: TAB_BAR_HEIGHT,
+          paddingBottom: Platform.OS === "ios" ? 30 : 10,
           paddingTop: 10,
-          // Remove position: 'absolute' to prevent floating/blur
-          position: "absolute", // keep this so the tab bar floats over content correctly
-          bottom: 0, // ensure it's at the bottom
+          position: "absolute",
+          bottom: 0,
           left: 0,
           right: 0,
-          elevation: 0, // remove shadow on android if needed
+          elevation: 0,
         },
         // Remove custom tabBarButton and tabBarBackground if they were causing blur/effects
         // tabBarButton: HapticTab, // Remove unless needed
