@@ -14,7 +14,12 @@ import {
   ImageBackground,
   Platform,
 } from "react-native";
-import { Ionicons, FontAwesome, MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Ionicons,
+  FontAwesome,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import * as SecureStore from "expo-secure-store";
 import { StatusBar } from "expo-status-bar";
 
@@ -107,7 +112,6 @@ const CoffeeCard = ({ item }: { item: (typeof coffeeItems)[0] }) => (
 );
 
 const ACTIVE_COLOR = "#C67C4E"; // Brownish color from image
-const INACTIVE_COLOR = "#A9A9A9"; // Grayish color
 
 export default function HomeScreen() {
   const [user, setUser] = useState<User | null>(null);
@@ -169,9 +173,10 @@ export default function HomeScreen() {
       <StatusBar style="light" /> {/* Status bar style for dark header */}
       <ScrollView
         style={styles.scrollView}
-        stickyHeaderIndices={[1]} // Make the header section below the top info sticky
+        stickyHeaderIndices={[]} // Make the header section below the top info sticky
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
+        directionalLockEnabled={true}
       >
         {/* --- Top User Info Section (Not Sticky) --- */}
         <View style={styles.topInfoContainer}>
@@ -317,13 +322,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF", // White background for the main content
   },
   topInfoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
     paddingHorizontal: 20,
     // paddingTop: Platform.OS === 'android' ? 15 : 10, // Keep original top padding
     paddingBottom: 15,
-    backgroundColor: '#313131',
+    backgroundColor: "#313131",
     // --- Add this line ---
     paddingTop: Platform.OS === "android" ? 65 : 10, // Adjust top padding
   },
@@ -345,7 +350,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#E0E0E0", // Slightly lighter white
     textAlign: "right",
-    paddingRight: 7
+    paddingRight: 7,
   },
   locationIcon: {
     position: "absolute",
