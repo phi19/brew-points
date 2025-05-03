@@ -62,50 +62,37 @@ export default function TabLayout() {
         }}
       />
 
-      {/* Likes Tab */}
+      {/* 2. Redeem Tab (NEW - Needs app/(tabs)/redeem.tsx file) */}
       <Tabs.Screen
-        name="likes" // Matches app/(tabs)/likes.tsx
+        name="redeem" // You need to create app/(tabs)/redeem.tsx
         options={{
-          title: "Likes",
+          title: "Redeem",
           tabBarIcon: ({ color, focused }) => (
+            // Choose an icon for redeeming points (e.g., gift, ticket, star)
             <Ionicons
-              name={focused ? "heart" : "heart-outline"}
+              name={focused ? "gift" : "gift-outline"}
               size={28}
               color={color}
             />
+            // Or <Ionicons name={focused ? 'star' : 'star-outline'} size={28} color={color} />
+            // Or <Ionicons name={focused ? 'ticket' : 'ticket-outline'} size={28} color={color} />
           ),
         }}
       />
 
-      {/* Cart Tab */}
+      {/* 3. Community Tab (NEW - Needs app/(tabs)/community.tsx file) */}
       <Tabs.Screen
-        name="cart" // Matches app/(tabs)/cart.tsx
+        name="community" // You need to create app/(tabs)/community.tsx
         options={{
-          title: "Cart",
+          title: "Community",
           tabBarIcon: ({ color, focused }) => (
-            // Using MaterialCommunityIcons for a shopping bag icon
-            <MaterialCommunityIcons
-              name={focused ? "shopping" : "shopping-outline"}
-              size={28}
-              color={color}
-            />
-            // Alternative using Ionicons:
-            // <Ionicons name={focused ? 'cart' : 'cart-outline'} size={28} color={color} />
-          ),
-        }}
-      />
-
-      {/* Notifications Tab */}
-      <Tabs.Screen
-        name="notifications" // Matches app/(tabs)/notifications.tsx
-        options={{
-          title: "Notifications",
-          tabBarIcon: ({ color, focused }) => (
+            // Choose an icon for community (e.g., people, chatbubbles)
             <Ionicons
-              name={focused ? "notifications" : "notifications-outline"}
-              size={28}
+              name={focused ? "people" : "people-outline"}
+              size={30}
               color={color}
             />
+            // Or <Ionicons name={focused ? 'chatbubbles' : 'chatbubbles-outline'} size={28} color={color} />
           ),
         }}
       />

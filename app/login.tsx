@@ -81,10 +81,10 @@ export default function LoginPage() {
         await saveUserData(responseData);
         // ------------------------------------
 
-        Alert.alert(
+        /*Alert.alert(
           "Login Successful",
           `Welcome, ${responseData.name || "User"}!`
-        ); // Or just proceed
+        ); // Or just proceed*/
 
         // --- Navigate to the main part of the app ---
         // Replace '/(tabs)' or '/home' with your actual main screen route
