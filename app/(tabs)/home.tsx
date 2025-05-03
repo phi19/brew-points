@@ -1,5 +1,6 @@
 // Inside app/(tabs)/home.tsx
 import React, { useState, useEffect } from "react";
+import { router } from "expo-router"; // Import router
 import {
   Text,
   View,
@@ -70,35 +71,42 @@ interface Shop {
   description: string;
   rating: number;
   image: string; // This will be a URL
+  distance: string;
+  waitTime: string;
 }
 
 // Coffee Item Card
-const ShopCard = ({ item }: { item: Shop }) => (
+const ShopCard = ({
+  item,
+  onPress,
+}: {
+  item: Shop;
+  onPress: (shopId: string) => void;
+}) => (
   <View style={styles.card}>
-    <View style={styles.imageContainer}>
-      {/* Use Image source={{ uri: ... }} for network images */}
-      <Image
-        source={{ uri: item.image }}
-        style={styles.coffeeImage}
-        resizeMode="cover"
-      />
-      {item.rating ? ( // Conditionally render rating if available
-        <View style={styles.ratingBadge}>
-          <FontAwesome name="star" size={10} color="#FBBE21" />
-          <Text style={styles.ratingText}>{item.rating.toFixed(1)}</Text>
-        </View>
-      ) : null}
-    </View>
-    <Text style={styles.coffeeName}>{item.name}</Text>
-    <Text style={styles.coffeeType}>{item.description} </Text>
-    {/* Use description */}
-    <View style={styles.priceRow}>
-      {/* Replace price with something else or remove if shops don't have a single price */}
-      <Text style={styles.priceText}>{item.category}</Text>
-      <TouchableOpacity style={styles.addButton}>
-        <MaterialIcons name="arrow-right" size={18} color="#FFFFFF" />
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity onPress={() => onPress(item.id)}>
+      <View style={styles.imageContainer}>
+        {/* Use Image source={{ uri: ... }} for network images */}
+        <Image
+          source={{ uri: item.image }}
+          style={styles.coffeeImage}
+          resizeMode="cover"
+        />
+        {item.rating ? ( // Conditionally render rating if available
+          <View style={styles.ratingBadge}>
+            <FontAwesome name="star" size={10} color="#FBBE21" />
+            <Text style={styles.ratingText}>{item.rating.toFixed(1)}</Text>
+          </View>
+        ) : null}
+      </View>
+      <Text style={styles.coffeeName}>{item.name}</Text>
+      <Text style={styles.coffeeType}>{item.distance} </Text>
+      {/* Use description */}
+      <View style={styles.priceRow}>
+        {/* Replace price with something else or remove if shops don't have a single price */}
+        <Text style={styles.priceText}>{item.waitTime}</Text>
+      </View>
+    </TouchableOpacity>
   </View>
 );
 
@@ -205,6 +213,12 @@ export default function HomeScreen() {
   const locationCity = user?.location?.city || "Set Location"; // Default if somehow missing
   const locationCountry = user?.location?.country || "";
   // ---------------------------------------------------
+
+  const handleShopPress = (shopId: string) => {
+    console.log("Navigating to shop:", shopId);
+    // Navigate to the dynamic route, passing the ID
+    router.push(`/shop/${shopId}`);
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -326,7 +340,7 @@ export default function HomeScreen() {
           <FlatList
             data={filteredShops} // Use filteredShops state
             renderItem={({ item }) => {
-              return <ShopCard item={item} />;
+              return <ShopCard item={item} onPress={handleShopPress} />;
             }}
             keyExtractor={(item) => item.id}
             numColumns={2}
