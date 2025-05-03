@@ -14,7 +14,7 @@ import { StatusBar } from "expo-status-bar";
 import { router } from "expo-router"; // Import the router
 
 // Make sure the path to your image is correct
-const backgroundImage = require("../../assets/images/coffee_background.png");
+const backgroundImage = require("../assets/images/coffee_background.png");
 
 export default function IndexScreen() {
   // This is the component for your home screen content

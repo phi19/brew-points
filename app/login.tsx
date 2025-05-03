@@ -9,7 +9,6 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
-  Platform,
   Alert,
   ActivityIndicator,
 } from "react-native";
@@ -90,7 +89,7 @@ export default function LoginPage() {
         // --- Navigate to the main part of the app ---
         // Replace '/(tabs)' or '/home' with your actual main screen route
         // Using 'replace' prevents going back to the login screen
-        router.replace("/(tabs)"); // Example: Navigate to tabs layout
+        router.replace('/home');
         // -------------------------------------------
       } else {
         console.error("API Error:", response.status, responseData);

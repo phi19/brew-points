@@ -26,6 +26,12 @@ export default function RootLayout() {
       <Stack>
         {/* This defines the coffee screen (index.tsx) as the initial screen */}
         {/* and hides its header */}
+        {/* Login screen, shown only after pressing "Get Started" */}
+        <Stack.Screen
+          name="index"
+          options={{ title: "Index", headerShown: false }}
+        />
+
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
         {/* Login screen, shown only after pressing "Get Started" */}
