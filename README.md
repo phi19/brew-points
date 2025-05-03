@@ -109,5 +109,3 @@ Follow these instructions to get a copy of the project up and running on your lo
 *   Open the `brewpoints` folder in your code editor (e.g., VS Code).
 *   Most of the UI code resides within the `app/` directory, following the Expo Router file structure.
 *   Modify components and save your changes. The app should automatically reload in Expo Go (or you can manually reload from the Expo developer menu).
-
-## Project Structure (Simplified)
