@@ -96,7 +96,7 @@ const ShopCard = ({ item }: { item: Shop }) => (
       {/* Replace price with something else or remove if shops don't have a single price */}
       <Text style={styles.priceText}>{item.category}</Text>
       <TouchableOpacity style={styles.addButton}>
-        <MaterialIcons name="add" size={18} color="#FFFFFF" />
+        <MaterialIcons name="arrow-right" size={18} color="#FFFFFF" />
       </TouchableOpacity>
     </View>
   </View>
@@ -326,7 +326,6 @@ export default function HomeScreen() {
           <FlatList
             data={filteredShops} // Use filteredShops state
             renderItem={({ item }) => {
-              console.log(item, 1491)
               return <ShopCard item={item} />;
             }}
             keyExtractor={(item) => item.id}
