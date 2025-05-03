@@ -1,12 +1,12 @@
-// Inside app/(tabs)/notifications.tsx
+// Inside app/(tabs)/Saved.tsx
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-export default function NotificationsScreen() {
+export default function SavedScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Notifications Screen</Text>
-      {/* You can build the actual Notifications screen UI here later */}
+      <Text style={styles.text}>Saved Screen</Text>
+      {/* You can build the actual Saved screen UI here later */}
     </View>
   );
 }

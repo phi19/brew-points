@@ -296,9 +296,11 @@ export default function HomeScreen() {
                 <View style={styles.loyaltyTag}>
                   <Text style={styles.loyaltyText}>Loyalty Program</Text>
                 </View>
-                <Text style={styles.bannerTitle}>
-                  Redeem your{"\n"}points here
-                </Text>
+                <TouchableOpacity onPress={() => router.push("/redeem")}>
+                  <Text style={styles.bannerTitle}>
+                    Redeem your{"\n"}points here
+                  </Text>
+                </TouchableOpacity>
               </View>
             </ImageBackground>
           </View>

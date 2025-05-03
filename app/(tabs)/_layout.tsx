@@ -82,17 +82,15 @@ export default function TabLayout() {
 
       {/* 3. Community Tab (NEW - Needs app/(tabs)/community.tsx file) */}
       <Tabs.Screen
-        name="community" // You need to create app/(tabs)/community.tsx
+        name="saved"
         options={{
-          title: "Community",
+          title: "Saved",
           tabBarIcon: ({ color, focused }) => (
-            // Choose an icon for community (e.g., people, chatbubbles)
             <Ionicons
-              name={focused ? "people" : "people-outline"}
+              name={focused ? "heart" : "heart-outline"}
               size={30}
               color={color}
             />
-            // Or <Ionicons name={focused ? 'chatbubbles' : 'chatbubbles-outline'} size={28} color={color} />
           ),
         }}
       />

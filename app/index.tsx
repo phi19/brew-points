@@ -8,10 +8,14 @@ import {
   TouchableOpacity,
   Platform,
   SafeAreaView,
+  LogBox
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { router } from "expo-router"; // Import the router
+
+LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 // Make sure the path to your image is correct
 const backgroundImage = require("../assets/images/coffee_background.png");
