@@ -32,7 +32,6 @@
         "expo-channel-name": "production"
       }
     },
-
     "plugins": [
       "expo-router",
       [
@@ -43,7 +42,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
